@@ -17,6 +17,8 @@
 		91E17B0529F8F54A000CFA16 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 91E17B0429F8F54A000CFA16 /* SnapKit */; };
 		91E17B0829F8F566000CFA16 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E17B0729F8F566000CFA16 /* UIView+Extension.swift */; };
 		91E17B0A29F8F577000CFA16 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E17B0929F8F577000CFA16 /* UITextField+Extension.swift */; };
+		91E17B1129F8F88C000CFA16 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E17B1029F8F88C000CFA16 /* HomeViewModel.swift */; };
+		91E17B1329F90265000CFA16 /* HomeViewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E17B1229F90265000CFA16 /* HomeViewUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		91E17B0129F8F525000CFA16 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		91E17B0729F8F566000CFA16 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		91E17B0929F8F577000CFA16 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		91E17B1029F8F88C000CFA16 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		91E17B1229F90265000CFA16 /* HomeViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 			children = (
 				91E17AFF29F8F511000CFA16 /* HomeView.swift */,
 				91E17AEF29F8F0BA000CFA16 /* HomeViewController.swift */,
+				91E17B1029F8F88C000CFA16 /* HomeViewModel.swift */,
+				91E17B1229F90265000CFA16 /* HomeViewUseCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -205,6 +211,8 @@
 				91E17B0829F8F566000CFA16 /* UIView+Extension.swift in Sources */,
 				91E17B0229F8F525000CFA16 /* BaseUIView.swift in Sources */,
 				91E17B0A29F8F577000CFA16 /* UITextField+Extension.swift in Sources */,
+				91E17B1129F8F88C000CFA16 /* HomeViewModel.swift in Sources */,
+				91E17B1329F90265000CFA16 /* HomeViewUseCase.swift in Sources */,
 				91E17AF029F8F0BA000CFA16 /* HomeViewController.swift in Sources */,
 				91E17B0029F8F511000CFA16 /* HomeView.swift in Sources */,
 				91E17AEC29F8F0BA000CFA16 /* AppDelegate.swift in Sources */,

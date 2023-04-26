@@ -13,7 +13,7 @@ final class HomeView: BaseUIView {
     
     // MARK: - property
     
-    private lazy var firstNumTextField : UITextField = {
+    lazy var firstNumTextField : UITextField = {
         let textfield = UITextField()
         textfield.attributedPlaceholder = NSAttributedString(
             string: "첫번째 숫자를 입력해주세요.",
@@ -28,10 +28,10 @@ final class HomeView: BaseUIView {
         return textfield
     }()
     
-    private lazy var secondNumTextField : UITextField = {
+    lazy var secondNumTextField : UITextField = {
         let textfield = UITextField()
         textfield.attributedPlaceholder = NSAttributedString(
-            string: "첫번째 숫자를 입력해주세요.",
+            string: "두번째 숫자를 입력해주세요.",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.596, green: 0.596, blue: 0.596, alpha: 1),
                          .font : UIFont.systemFont(ofSize: 14, weight: .regular)]
         )
@@ -43,14 +43,14 @@ final class HomeView: BaseUIView {
         return textfield
     }()
     
-    private lazy var textLabel : UILabel = {
+    lazy var textLabel : UILabel = {
         let label = UILabel()
-        label.text = "버튼을 눌러주세요!"
+        label.text = "값을 먼저 입력해주세요."
         label.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
         return label
     }()
     
-    private lazy var plusButton : UIButton = {
+    lazy var plusButton : UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(red: 0.16, green: 0.63, blue: 0.73, alpha: 1.0)
         button.layer.cornerRadius = 20
@@ -58,7 +58,7 @@ final class HomeView: BaseUIView {
         return button
     }()
     
-    private lazy var minusButton : UIButton = {
+    lazy var minusButton : UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(red: 0.16, green: 0.63, blue: 0.73, alpha: 1.0)
         button.layer.cornerRadius = 20
@@ -66,7 +66,7 @@ final class HomeView: BaseUIView {
         return button
     }()
     
-    private lazy var multiplusButton : UIButton = {
+    lazy var multiplusButton : UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(red: 0.16, green: 0.63, blue: 0.73, alpha: 1.0)
         button.layer.cornerRadius = 20
@@ -74,7 +74,7 @@ final class HomeView: BaseUIView {
         return button
     }()
     
-    private lazy var divisplusButton : UIButton = {
+    lazy var divisButton : UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(red: 0.16, green: 0.63, blue: 0.73, alpha: 1.0)
         button.layer.cornerRadius = 20
@@ -90,7 +90,7 @@ final class HomeView: BaseUIView {
             plusButton,
             minusButton,
             multiplusButton,
-            divisplusButton
+            divisButton
         )
         
         firstNumTextField.snp.makeConstraints {
@@ -134,7 +134,7 @@ final class HomeView: BaseUIView {
             $0.height.equalTo(39)
         }
         
-        divisplusButton.snp.makeConstraints {
+        divisButton.snp.makeConstraints {
             $0.top.equalTo(multiplusButton.snp.bottom).offset(28)
             $0.leading.equalToSuperview().offset(46)
             $0.trailing.equalToSuperview().inset(47)
