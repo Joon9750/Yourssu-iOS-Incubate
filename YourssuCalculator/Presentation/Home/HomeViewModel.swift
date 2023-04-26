@@ -9,7 +9,7 @@ import Foundation
 
 @frozen
 enum CalculatorResult {
-    case success(result: Int)
+    case success(firstNum: Int, secondNum: Int, type: String, result: Int)
     case didGetfirstNum
     case numEmptyFail
     case invalidNumFail
@@ -39,8 +39,7 @@ protocol HomeViewModelOutput {
 protocol HomeViewModelInputOutput: HomeViewModelInput, HomeViewModelOutput {}
 
 final class HomeViewModel: HomeViewModelInputOutput {
-
-//    private var isButtonTap: Bool = false
+    
     private var isFirstTextFieldFull: Bool = false
     private var firstTextFieldNum: Int = 0
     private var secondTextFieldNum: Int = 0
@@ -48,7 +47,7 @@ final class HomeViewModel: HomeViewModelInputOutput {
     private var homeViewUseCase: HomeViewUseCase
     
     // MARK: - Output
-
+    
     var calculatorStatus: ((CalculatorResult) -> Void)?
     var status: CalculatorResult? {
         didSet {
@@ -68,7 +67,7 @@ final class HomeViewModel: HomeViewModelInputOutput {
 extension HomeViewModel {
     
     // MARK: - Input
-
+    
     func firstTextFieldStartTyping(num: Int) {
         isFirstTextFieldFull = true
         firstTextFieldNum = num

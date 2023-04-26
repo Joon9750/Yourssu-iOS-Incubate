@@ -10,10 +10,10 @@ import UIKit
 import SnapKit
 
 class HomeViewController: UIViewController {
-
+    
     private let homeView = HomeView()
     private let homeViewModel: HomeViewModel?
-
+    
     
     init(viewModel: HomeViewModel) {
         self.homeViewModel = viewModel
@@ -52,8 +52,8 @@ class HomeViewController: UIViewController {
     private func bind() {
         homeViewModel?.calculatorStatus = { [weak self] isValid in
             switch isValid {
-            case .success(let result):
-                self?.homeView.textLabel.text = "결과는 : " + String(result) 
+            case .success(let firstNum, let secondNum, let type, let result):
+                self?.homeView.textLabel.text = self?.makeSuccessString(firstNum, secondNum, type, result)
             case .didGetfirstNum:
                 self?.homeView.textLabel.text = "버튼을 눌러주세요."
             case .numEmptyFail:
@@ -61,6 +61,16 @@ class HomeViewController: UIViewController {
             case .invalidNumFail:
                 self?.homeView.textLabel.text = "0으로 나눌 수 없습니다."
             }
+        }
+    }
+    
+    private func makeSuccessString(_ firstNum: Int, _ secondNum: Int, _ type: String, _ result: Int) -> String {
+        switch type {
+        case "plus": return String(firstNum) + " + " + String(secondNum) + " = " + String(result)
+        case "minus": return String(firstNum) + " - " + String(secondNum) + " = " + String(result)
+        case "mulitplus": return String(firstNum) + " * " + String(secondNum) + " = " + String(result)
+        case "divis": return String(firstNum) + " / " + String(secondNum) + " = " + String(result)
+        default: return ""
         }
     }
 }
@@ -74,17 +84,21 @@ private extension HomeViewController {
     }
     
     @objc func firstTextFieldDidChange(noti: NSNotification) {
-        if let text = homeView.firstNumTextField.text,
-           let textToInt = Int(text) {
-            self.homeViewModel?.firstTextFieldStartTyping(num: textToInt)
+        guard let text = homeView.firstNumTextField.text,
+              let textToInt = Int(text) else {
+            self.homeViewModel?.firstTextFieldStartTyping(num: Int())
+            return
         }
+        self.homeViewModel?.firstTextFieldStartTyping(num: textToInt)
     }
     
     @objc func secondTextFieldDidChange(noti: NSNotification) {
-        if let text = homeView.secondNumTextField.text,
-           let textToInt = Int(text) {
-            self.homeViewModel?.secondTextFieldStartTyping(num: textToInt)
+        guard let text = homeView.secondNumTextField.text,
+              let textToInt = Int(text) else {
+            self.homeViewModel?.secondTextFieldStartTyping(num: Int())
+            return
         }
+        self.homeViewModel?.secondTextFieldStartTyping(num: textToInt)
     }
 }
 

@@ -15,7 +15,7 @@ protocol HomeViewUseCase {
         secondNum: Int,
         calculateType: CalculateTpye
     ) -> CalculatorResult
-
+    
     func checkNumEmptyFail(
         _ isFirstTextFieldFull: Bool,
         _ isSecondTextFieldFull: Bool
@@ -24,7 +24,8 @@ protocol HomeViewUseCase {
     func checkisVaildFail(
         _ isFirstTextFieldFull: Bool,
         _ isSecondTextFieldFull: Bool,
-        _ firstNum: Int
+        _ firstNum: Int,
+        _ calculateType: CalculateTpye
     ) -> Bool
 }
 
@@ -36,21 +37,21 @@ final class DefaultHomeViewUseCase: HomeViewUseCase {
         secondNum: Int,
         calculateType: CalculateTpye
     ) -> CalculatorResult {
-            if checkNumEmptyFail(isFirstTextFieldFull,isSecondTextFieldFull) {
-                return .numEmptyFail
-            }
-            if checkisVaildFail(isFirstTextFieldFull, isSecondTextFieldFull, firstNum) {
-                return .invalidNumFail
-            }
-        switch calculateType {
-        case .plus: return .success(result: firstNum + secondNum)
-        case .minus: return .success(result: firstNum - secondNum)
-        case .mulitplus: return .success(result: firstNum * secondNum)
-        case .divis: return .success(result: firstNum / secondNum)
+        if checkNumEmptyFail(isFirstTextFieldFull,isSecondTextFieldFull) {
+            return .numEmptyFail
         }
-            
+        if checkisVaildFail(isFirstTextFieldFull, isSecondTextFieldFull, firstNum, calculateType) {
+            return .invalidNumFail
+        }
+        switch calculateType {
+        case .plus: return .success(firstNum: firstNum, secondNum: secondNum, type: "plus", result: firstNum + secondNum)
+        case .minus: return .success(firstNum: firstNum, secondNum: secondNum, type: "minus", result: firstNum - secondNum)
+        case .mulitplus: return .success(firstNum: firstNum, secondNum: secondNum, type: "mulitplus", result: firstNum * secondNum)
+        case .divis: return .success(firstNum: firstNum, secondNum: secondNum, type: "divis", result: firstNum / secondNum)
+        }
+        
     }
-
+    
     func checkNumEmptyFail(
         _ isFirstTextFieldFull: Bool,
         _ isSecondTextFieldFull: Bool) -> Bool {
@@ -60,18 +61,20 @@ final class DefaultHomeViewUseCase: HomeViewUseCase {
             } else {
                 return false
             }
-    }
+        }
     
     func checkisVaildFail(
         _ isFirstTextFieldFull: Bool,
-        _ isSecondTextFieldFUll: Bool,
-        _ firstNum: Int) -> Bool {
-        if isFirstTextFieldFull == true &&
-            isSecondTextFieldFUll == true &&
-            firstNum == 0 {
-            return true
-        } else {
-            return false
+        _ isSecondTextFieldFull: Bool,
+        _ firstNum: Int,
+        _ calculateType: CalculateTpye) -> Bool {
+            if calculateType == .divis &&
+                isFirstTextFieldFull == true &&
+                isSecondTextFieldFull == true &&
+                firstNum == 0 {
+                return true
+            } else {
+                return false
+            }
         }
-    }
 }
