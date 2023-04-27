@@ -19,6 +19,8 @@
 		91E17B0A29F8F577000CFA16 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E17B0929F8F577000CFA16 /* UITextField+Extension.swift */; };
 		91E17B1129F8F88C000CFA16 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E17B1029F8F88C000CFA16 /* HomeViewModel.swift */; };
 		91E17B1329F90265000CFA16 /* HomeViewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E17B1229F90265000CFA16 /* HomeViewUseCase.swift */; };
+		91E17B1B29FA86CC000CFA16 /* CalculateTpyeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E17B1A29FA86CC000CFA16 /* CalculateTpyeModel.swift */; };
+		91E17B1D29FA86E6000CFA16 /* CalculatorResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E17B1C29FA86E6000CFA16 /* CalculatorResultModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		91E17B0929F8F577000CFA16 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		91E17B1029F8F88C000CFA16 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		91E17B1229F90265000CFA16 /* HomeViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUseCase.swift; sourceTree = "<group>"; };
+		91E17B1A29FA86CC000CFA16 /* CalculateTpyeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTpyeModel.swift; sourceTree = "<group>"; };
+		91E17B1C29FA86E6000CFA16 /* CalculatorResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorResultModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 		91E17AEA29F8F0BA000CFA16 /* YourssuCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				91E17B1E29FA8711000CFA16 /* Domain */,
 				91E17B0B29F8F58D000CFA16 /* Presentation */,
 				91E17B0D29F8F5B2000CFA16 /* Global */,
 			);
@@ -97,7 +102,6 @@
 				91E17AFF29F8F511000CFA16 /* HomeView.swift */,
 				91E17AEF29F8F0BA000CFA16 /* HomeViewController.swift */,
 				91E17B1029F8F88C000CFA16 /* HomeViewModel.swift */,
-				91E17B1229F90265000CFA16 /* HomeViewUseCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -130,6 +134,32 @@
 				91E17AEB29F8F0BA000CFA16 /* AppDelegate.swift */,
 			);
 			path = Supports;
+			sourceTree = "<group>";
+		};
+		91E17B1E29FA8711000CFA16 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				91E17B1F29FA872A000CFA16 /* Model */,
+				91E17B2029FA8734000CFA16 /* Usecase */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		91E17B1F29FA872A000CFA16 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				91E17B1A29FA86CC000CFA16 /* CalculateTpyeModel.swift */,
+				91E17B1C29FA86E6000CFA16 /* CalculatorResultModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		91E17B2029FA8734000CFA16 /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				91E17B1229F90265000CFA16 /* HomeViewUseCase.swift */,
+			);
+			path = Usecase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91E17B0829F8F566000CFA16 /* UIView+Extension.swift in Sources */,
+				91E17B1D29FA86E6000CFA16 /* CalculatorResultModel.swift in Sources */,
 				91E17B0229F8F525000CFA16 /* BaseUIView.swift in Sources */,
 				91E17B0A29F8F577000CFA16 /* UITextField+Extension.swift in Sources */,
 				91E17B1129F8F88C000CFA16 /* HomeViewModel.swift in Sources */,
@@ -216,6 +247,7 @@
 				91E17AF029F8F0BA000CFA16 /* HomeViewController.swift in Sources */,
 				91E17B0029F8F511000CFA16 /* HomeView.swift in Sources */,
 				91E17AEC29F8F0BA000CFA16 /* AppDelegate.swift in Sources */,
+				91E17B1B29FA86CC000CFA16 /* CalculateTpyeModel.swift in Sources */,
 				91E17AEE29F8F0BA000CFA16 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
