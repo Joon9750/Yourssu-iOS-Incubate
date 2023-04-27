@@ -9,15 +9,15 @@ import UIKit
 
 import SnapKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     private let homeView = HomeView()
-    private let homeViewModel: HomeViewModel?
-    
+    private var homeViewModel: HomeViewModelInputOutput?
     
     init(viewModel: HomeViewModel) {
         self.homeViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -26,52 +26,19 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        config()
-        render()
-        bind()
-        setButtonAction()
+        setView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        setupNotificationCenter()
-    }
-    
-    
-    private func config() {
-        view.backgroundColor = .systemBackground
-    }
-    
-    private func render() {
-        view.addSubview(homeView)
-        
-        homeView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+    private func setView() {
+        self.view = homeView
     }
     
     private func bind() {
-        homeViewModel?.calculatorStatus = { [weak self] isValid in
-            switch isValid {
-            case .success(let firstNum, let secondNum, let type, let result):
-                self?.homeView.textLabel.text = self?.makeSuccessString(firstNum, secondNum, type, result)
-            case .didGetfirstNum:
-                self?.homeView.textLabel.text = "버튼을 눌러주세요."
-            case .numEmptyFail:
-                self?.homeView.textLabel.text = "숫자를 모두 입력해주세요."
-            case .invalidNumFail:
-                self?.homeView.textLabel.text = "0으로 나눌 수 없습니다."
-            }
+        homeViewModel?.calculatorStatus = { [weak self] text in
+            self?.homeView.textLabel.text = text
         }
-    }
-    
-    private func makeSuccessString(_ firstNum: Int, _ secondNum: Int, _ type: String, _ result: Int) -> String {
-        switch type {
-        case "plus": return String(firstNum) + " + " + String(secondNum) + " = " + String(result)
-        case "minus": return String(firstNum) + " - " + String(secondNum) + " = " + String(result)
-        case "mulitplus": return String(firstNum) + " * " + String(secondNum) + " = " + String(result)
-        case "divis": return String(firstNum) + " / " + String(secondNum) + " = " + String(result)
-        default: return ""
-        }
+        setButtonAction()
+        setupNotificationCenter()
     }
 }
 

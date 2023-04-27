@@ -7,6 +7,22 @@
 
 import Foundation
 
+@frozen
+enum CalculateTpye {
+    case plus
+    case minus
+    case mulitplus
+    case divis
+}
+
+@frozen
+enum CalculatorResult {
+    case success(firstNum: Int, secondNum: Int, type: CalculateTpye, result: Int)
+    case didSingleTextFieldFull
+    case numEmptyFail
+    case invalidNumFail
+}
+
 protocol HomeViewUseCase {
     func checkSuccess(
         isFirstTextFieldFull: Bool,
@@ -44,10 +60,10 @@ final class DefaultHomeViewUseCase: HomeViewUseCase {
             return .invalidNumFail
         }
         switch calculateType {
-        case .plus: return .success(firstNum: firstNum, secondNum: secondNum, type: "plus", result: firstNum + secondNum)
-        case .minus: return .success(firstNum: firstNum, secondNum: secondNum, type: "minus", result: firstNum - secondNum)
-        case .mulitplus: return .success(firstNum: firstNum, secondNum: secondNum, type: "mulitplus", result: firstNum * secondNum)
-        case .divis: return .success(firstNum: firstNum, secondNum: secondNum, type: "divis", result: firstNum / secondNum)
+        case .plus: return .success(firstNum: firstNum, secondNum: secondNum, type: .plus, result: firstNum + secondNum)
+        case .minus: return .success(firstNum: firstNum, secondNum: secondNum, type: .minus, result: firstNum - secondNum)
+        case .mulitplus: return .success(firstNum: firstNum, secondNum: secondNum, type: .mulitplus, result: firstNum * secondNum)
+        case .divis: return .success(firstNum: firstNum, secondNum: secondNum, type: .divis, result: firstNum / secondNum)
         }
         
     }

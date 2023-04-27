@@ -7,22 +7,6 @@
 
 import Foundation
 
-@frozen
-enum CalculatorResult {
-    case success(firstNum: Int, secondNum: Int, type: String, result: Int)
-    case didGetfirstNum
-    case numEmptyFail
-    case invalidNumFail
-}
-
-@frozen
-enum CalculateTpye {
-    case plus
-    case minus
-    case mulitplus
-    case divis
-}
-
 protocol HomeViewModelInput {
     func firstTextFieldStartTyping(num: Int)
     func secondTextFieldStartTyping(num: Int)
@@ -33,7 +17,7 @@ protocol HomeViewModelInput {
 }
 
 protocol HomeViewModelOutput {
-    var calculatorStatus: ((CalculatorResult) -> Void)? { get set }
+    var calculatorStatus: ((String) -> Void)? { get set }
 }
 
 protocol HomeViewModelInputOutput: HomeViewModelInput, HomeViewModelOutput {}
@@ -48,12 +32,21 @@ final class HomeViewModel: HomeViewModelInputOutput {
     
     // MARK: - Output
     
-    var calculatorStatus: ((CalculatorResult) -> Void)?
+    var calculatorStatus: ((String) -> Void)?
     var status: CalculatorResult? {
         didSet {
             if let calculatorStatus = calculatorStatus,
                let status = status {
-                calculatorStatus(status)
+                switch status {
+                case .success(let firstNum, let secondNum, let type, let result):
+                    calculatorStatus(makeSuccessString(firstNum, secondNum, type, result))
+                case .didSingleTextFieldFull:
+                    calculatorStatus("버튼을 눌러주세요.")
+                case .numEmptyFail:
+                    calculatorStatus("숫자를 모두 입력해주세요.")
+                case .invalidNumFail:
+                    calculatorStatus("0으로 나눌 수 없습니다.")
+                }
             }
         }
     }
@@ -62,6 +55,17 @@ final class HomeViewModel: HomeViewModelInputOutput {
         self.homeViewUseCase = useCase
     }
     
+    private func makeSuccessString(_ firstNum: Int, _ secondNum: Int, _ type: CalculateTpye, _ result: Int) -> String {
+        let firstNum = String(firstNum)
+        let secondNum = String(secondNum)
+        let resultNum = String(result)
+        switch type {
+        case .plus: return firstNum + " + " + secondNum + " = " + resultNum
+        case .minus: return firstNum + " - " + secondNum + " = " + resultNum
+        case .mulitplus: return firstNum + " * " + secondNum + " = " + resultNum
+        case .divis: return firstNum + " / " + secondNum + " = " + resultNum
+        }
+    }
 }
 
 extension HomeViewModel {
@@ -71,13 +75,13 @@ extension HomeViewModel {
     func firstTextFieldStartTyping(num: Int) {
         isFirstTextFieldFull = true
         firstTextFieldNum = num
-        calculatorStatus?(.didGetfirstNum)
+        status = .didSingleTextFieldFull
     }
     
     func secondTextFieldStartTyping(num: Int) {
         isSecondTextFieldFull = true
         secondTextFieldNum = num
-        calculatorStatus?(.didGetfirstNum)
+        status = .didSingleTextFieldFull
     }
     
     func plusButtonDidTap() {
