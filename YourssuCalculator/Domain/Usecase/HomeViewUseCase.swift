@@ -7,22 +7,6 @@
 
 import Foundation
 
-//@frozen
-//enum CalculateTpye {
-//    case plus
-//    case minus
-//    case mulitplus
-//    case divis
-//}
-//
-//@frozen
-//enum CalculatorResult {
-//    case success(firstNum: Int, secondNum: Int, type: CalculateTpye, result: Int)
-//    case didSingleTextFieldFull
-//    case numEmptyFail
-//    case invalidNumFail
-//}
-
 protocol HomeViewUseCase {
     func checkSuccess(
         isFirstTextFieldFull: Bool,
